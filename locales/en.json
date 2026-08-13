@@ -1,0 +1,366 @@
+{
+  "meta": {
+    "title": "Uzbekistan Business House | Kabul — one-stop service centre",
+    "description": "An official centre in Kabul for Uzbek and Afghan entrepreneurs: legal, accounting, marketing, logistics and B2B services in one place.",
+    "ogTitle": "Uzbekistan Business House — Kabul",
+    "ogDescription": "A business bridge between Tashkent and Kabul. One window: law, finance, export-import and partnership."
+  },
+  "img": {
+    "heroAlt": "Evening view of the Uzbekistan Business House building in Kabul",
+    "logoAlt": "Uzbekistan Business House logo",
+    "mapAlt": "Map of Kart-e-Se, Kabul"
+  },
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "pricing": "Pricing",
+    "stages": "Roadmap",
+    "contact": "Contact",
+    "cta": "Become a partner",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "brand": {
+    "name": "Uzbekistan Business House",
+    "short": "Business House"
+  },
+  "hero": {
+    "eyebrow": "Uzbekistan — Afghanistan · Kabul",
+    "title": "Uzbekistan Business House",
+    "subhead": "A one-stop centre in Kabul providing legal, financial, marketing and logistics services for entrepreneurs from Uzbekistan and Afghanistan.",
+    "ctaPrimary": "Become a partner",
+    "ctaSecondary": "Explore services",
+    "tashkent": "Tashkent",
+    "kabul": "Kabul",
+    "uzbekistan": "Uzbekistan",
+    "afghanistan": "Afghanistan",
+    "scroll": "Scroll",
+    "routeLabel": "partnership corridor"
+  },
+  "about": {
+    "eyebrow": "Project",
+    "title": "About the project",
+    "intro": "The aim is to support business in Kabul on a one-stop-shop principle. The centre simplifies export-import, partner search and investment processes. It creates a secure, clear and official environment for companies from Uzbekistan and Afghanistan.",
+    "goals": [
+      {
+        "title": "Export expansion",
+        "text": "Bring Uzbek products to the Afghan market and find new buyers."
+      },
+      {
+        "title": "Secure partnership",
+        "text": "Legal protection, contracts and guarantee mechanisms that build trust."
+      },
+      {
+        "title": "Investment flow",
+        "text": "A practical platform for bilateral trade and investment projects."
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "Practice areas",
+    "title": "Services",
+    "intro": "The Kabul centre brings 12 service lines together — so an entrepreneur does not need a separate office for every issue.",
+    "items": [
+      {
+        "title": "Legal services",
+        "text": "Contracts, registration and advice on local legislation."
+      },
+      {
+        "title": "Accounting and tax",
+        "text": "Bookkeeping, reporting and tax compliance support."
+      },
+      {
+        "title": "Market research",
+        "text": "Afghan market, pricing and competitor analysis, target segments."
+      },
+      {
+        "title": "Office in Kabul",
+        "text": "Workspace, meeting rooms and a registered address."
+      },
+      {
+        "title": "Interpretation",
+        "text": "Spoken and written translation in Uzbek, Dari, Pashto, Russian and English."
+      },
+      {
+        "title": "Transport and transfer",
+        "text": "Airport, city and business-meeting transfers."
+      },
+      {
+        "title": "Visa and migration",
+        "text": "Documents, invitation letters and process support."
+      },
+      {
+        "title": "B2B meetings",
+        "text": "Partner matching, meeting plans and office rental."
+      },
+      {
+        "title": "Exhibitions and events",
+        "text": "Stands, forums and tailored event production."
+      },
+      {
+        "title": "Export-import and guarantees",
+        "text": "Contracts, certificates, customs and guarantee mechanisms."
+      },
+      {
+        "title": "Office in Tashkent",
+        "text": "Workspace and address in Tashkent for Afghan entrepreneurs."
+      },
+      {
+        "title": "Warehouse and logistics",
+        "text": "Storage, cargo tracking and supply-chain support."
+      }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Fees",
+    "title": "Service packages",
+    "intro": "Choose a monthly package or a project-based service. Final terms are confirmed after an enquiry.",
+    "perMonth": "/month",
+    "perProject": "/project",
+    "cta": "Enquire",
+    "featured": "Most popular",
+    "plans": [
+      {
+        "id": "basic",
+        "name": "Basic",
+        "price": "$300",
+        "period": "month",
+        "features": [
+          "Access to the information database",
+          "Initial legal consultation",
+          "List of potential partners",
+          "Office use — 8 hours/month"
+        ]
+      },
+      {
+        "id": "business",
+        "name": "Business",
+        "price": "$700",
+        "period": "month",
+        "features": [
+          "Office and meeting room",
+          "Interpretation — 20 hours/month",
+          "B2B meeting arrangement",
+          "Monthly marketing briefings",
+          "Legal and accounting advice"
+        ]
+      },
+      {
+        "id": "export",
+        "name": "Export",
+        "price": "$1500",
+        "period": "project",
+        "features": [
+          "Market analysis and buyer search",
+          "Contract drafting",
+          "Certificates and customs support",
+          "Logistics and cargo tracking"
+        ]
+      },
+      {
+        "id": "representative",
+        "name": "Permanent office",
+        "price": "$2000",
+        "period": "month",
+        "features": [
+          "Dedicated office and legal address",
+          "Trade representative",
+          "Secretariat",
+          "Ongoing client management"
+        ]
+      }
+    ],
+    "extrasTitle": "Additional services",
+    "extras": [
+      {
+        "name": "Interpretation",
+        "price": "$25 / hour",
+        "note": "Spoken interpretation for meetings and negotiations."
+      },
+      {
+        "name": "Transfer",
+        "price": "$30–50 / trip",
+        "note": "Airport and in-city transfers."
+      },
+      {
+        "name": "Visa assistance",
+        "price": "$80–150 / person",
+        "note": "Document pack and process follow-up."
+      },
+      {
+        "name": "Meeting room",
+        "price": "$40 / hour",
+        "note": "Equipped room, tea and technical support."
+      },
+      {
+        "name": "Legal translation",
+        "price": "$15 / page",
+        "note": "Translation of contracts and official documents."
+      },
+      {
+        "name": "Warehouse / exhibition",
+        "price": "on request",
+        "note": "Short-term storage and stand organisation."
+      }
+    ]
+  },
+  "stages": {
+    "eyebrow": "Roadmap",
+    "title": "Implementation stages",
+    "intro": "The centre reaches full operations within 12 months. Each stage is tied to a clear result and accountability.",
+    "items": [
+      {
+        "title": "Preparation",
+        "duration": "1–2 months",
+        "points": [
+          "Legal and organisational documents",
+          "Agreements with partners",
+          "Project team formation"
+        ]
+      },
+      {
+        "title": "Infrastructure",
+        "duration": "3–5 months",
+        "points": [
+          "Fit-out of the Kabul office",
+          "Service standards and processes",
+          "Digital platform and database"
+        ]
+      },
+      {
+        "title": "Pilot operations",
+        "duration": "6–8 months",
+        "points": [
+          "First clients and B2B meetings",
+          "Service quality testing",
+          "Adjustments based on feedback"
+        ]
+      },
+      {
+        "title": "Full operations",
+        "duration": "9–12 months",
+        "points": [
+          "Full service package",
+          "Exhibition and events calendar",
+          "Regional partnership network"
+        ]
+      }
+    ]
+  },
+  "results": {
+    "eyebrow": "Target indicators",
+    "title": "Expected results",
+    "items": [
+      {
+        "value": 500,
+        "prefix": "",
+        "suffix": "+",
+        "label": "Uzbek companies served"
+      },
+      {
+        "value": 1000,
+        "prefix": "",
+        "suffix": "+",
+        "label": "B2B meetings arranged"
+      },
+      {
+        "value": 500,
+        "prefix": "$",
+        "suffix": "m+",
+        "label": "trade turnover facilitated"
+      },
+      {
+        "value": 200,
+        "prefix": "",
+        "suffix": "+",
+        "label": "export-import deals supported"
+      }
+    ]
+  },
+  "audience": {
+    "eyebrow": "Who we serve",
+    "title": "Sectors of cooperation",
+    "intro": "The centre is open to businesses from both countries, with particular readiness in the following sectors.",
+    "items": [
+      {
+        "title": "Trade and distribution",
+        "text": "Wholesale, dealerships and retail networks."
+      },
+      {
+        "title": "Agriculture",
+        "text": "Food, fruit and vegetables, and processing."
+      },
+      {
+        "title": "Textiles",
+        "text": "Fabrics, ready-made garments and home textiles."
+      },
+      {
+        "title": "Construction materials",
+        "text": "Cement, metal, ceramics and fittings."
+      },
+      {
+        "title": "Pharmaceuticals",
+        "text": "Medicines and medical products."
+      },
+      {
+        "title": "Logistics and transport",
+        "text": "Freight, transit and warehousing."
+      },
+      {
+        "title": "Education and IT",
+        "text": "Talent, digital solutions and services export."
+      }
+    ],
+    "whoTitle": "For whom",
+    "who": [
+      "Exporters",
+      "Manufacturers",
+      "Investors",
+      "Logistics companies",
+      "Institutions and chambers"
+    ]
+  },
+  "contact": {
+    "eyebrow": "Enquiry",
+    "title": "Contact",
+    "intro": "Write about partnership, a package or a meeting — the team will reply shortly.",
+    "addressLabel": "Address",
+    "address": "Afghanistan, Kabul, Martan Kart-e-Se, Kabul, Afghanistan",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "mapTitle": "Map",
+    "form": {
+      "name": "Name",
+      "company": "Company",
+      "country": "Country",
+      "email": "Email",
+      "service": "Service type",
+      "message": "Message",
+      "submit": "Send",
+      "sending": "Sending…",
+      "success": "Your enquiry has been received. We will contact you shortly.",
+      "error": "Sending failed. Please try again or email us directly.",
+      "required": "This field is required",
+      "emailInvalid": "Invalid email format",
+      "selectPlaceholder": "Select",
+      "countries": {
+        "uz": "Uzbekistan",
+        "af": "Afghanistan",
+        "other": "Other"
+      },
+      "services": {
+        "basic": "Basic package",
+        "business": "Business package",
+        "export": "Export package",
+        "representative": "Permanent office",
+        "other": "Other / additional service"
+      }
+    }
+  },
+  "footer": {
+    "description": "A one-stop service centre in Kabul — a business bridge between entrepreneurs of Uzbekistan and Afghanistan.",
+    "links": "Page sections",
+    "rights": "All rights reserved.",
+    "office": "Office"
+  }
+}
