@@ -25,7 +25,7 @@ export function Button({
     variant === "primary" &&
       "bg-gold text-navy-dark hover:-translate-y-px hover:bg-gold-light",
     variant === "secondary" &&
-      "border border-gold bg-transparent text-gold hover:-translate-y-px hover:bg-gold/10",
+      "border border-navy bg-transparent text-navy hover:-translate-y-px hover:bg-navy hover:text-white",
     className
   );
 

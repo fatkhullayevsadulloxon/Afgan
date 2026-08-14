@@ -23,7 +23,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 24);
+    const onScroll = () => setSolid(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -41,16 +41,13 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-250",
-        solid || open ? "bg-navy-dark" : "bg-transparent"
+        "fixed inset-x-0 top-0 z-50 border-b bg-white/95 backdrop-blur-sm transition-shadow duration-250",
+        solid || open ? "border-navy/10 shadow-sm" : "border-transparent"
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-4">
-        <a href="#top" className="flex min-w-0 items-center gap-3" onClick={close}>
-          <Logo size={36} />
-          <span className="truncate font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white md:text-xs">
-            {dict.brand.name}
-          </span>
+      <Container className="flex h-[72px] items-center justify-between gap-3 lg:h-20 lg:gap-4">
+        <a href="#top" className="flex shrink-0 items-center" onClick={close}>
+          <Logo priority />
         </a>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
@@ -58,7 +55,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-[13px] font-medium text-off-white transition hover:text-gold"
+              className="text-[13px] font-medium text-navy/75 transition hover:text-gold"
             >
               {dict.nav[item.key]}
             </a>
@@ -72,7 +69,7 @@ export function Header() {
           </Button>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center text-gold lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center text-navy lg:hidden"
             aria-label={open ? dict.nav.menuClose : dict.nav.menuOpen}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -84,7 +81,7 @@ export function Header() {
 
       <div
         className={cn(
-          "border-t border-line bg-navy-dark lg:hidden",
+          "border-t border-navy/10 bg-white lg:hidden",
           open ? "block" : "hidden"
         )}
       >
@@ -94,7 +91,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={close}
-              className="py-3 text-base text-white"
+              className="py-3 text-base text-navy"
             >
               {dict.nav[item.key]}
             </a>

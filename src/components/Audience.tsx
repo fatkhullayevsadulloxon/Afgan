@@ -28,10 +28,9 @@ export function Audience() {
   const { dict } = useLanguage();
 
   return (
-    <section className="bg-bg-light py-10 text-ink lg:py-20">
+    <section className="bg-white py-10 lg:py-20">
       <Container>
         <SectionHeading
-          invert
           eyebrow={dict.audience.eyebrow}
           title={dict.audience.title}
           intro={dict.audience.intro}
@@ -42,14 +41,14 @@ export function Audience() {
             return (
               <article
                 key={item.title}
-                className="h-full border border-navy/10 bg-white p-6"
+                className="h-full border border-navy/10 bg-cream p-6"
               >
                 <div className="space-y-2">
                   <Icon className="text-gold" size={24} strokeWidth={1.5} />
                   <h3 className="font-serif text-lg font-semibold tracking-tight text-navy">
                     {item.title}
                   </h3>
-                  <p className="text-[15px] leading-relaxed text-ink/75">
+                  <p className="text-[15px] leading-relaxed text-navy/70">
                     {item.text}
                   </p>
                 </div>
@@ -64,7 +63,7 @@ export function Audience() {
           {dict.audience.who.map((item) => (
             <li
               key={item}
-              className="border border-navy/15 bg-white px-3 py-1.5 text-sm text-navy"
+              className="border border-navy/15 bg-cream px-3 py-1.5 text-sm text-navy"
             >
               {item}
             </li>

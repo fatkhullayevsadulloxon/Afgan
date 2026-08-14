@@ -9,7 +9,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("flex items-center border border-line", className)}
+      className={cn("flex items-center border border-navy/20", className)}
       role="group"
       aria-label="Language"
     >
@@ -22,7 +22,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             "min-w-[2.25rem] px-2 py-1.5 text-[11px] font-semibold tracking-[0.14em] transition",
             locale === code
               ? "bg-gold text-navy-dark"
-              : "bg-transparent text-gold-light hover:text-white"
+              : "bg-transparent text-navy/70 hover:text-navy"
           )}
           aria-pressed={locale === code}
         >

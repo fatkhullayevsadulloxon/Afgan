@@ -14,10 +14,9 @@ export function Pricing() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="pricing" className="bg-bg-light py-10 text-ink lg:py-20">
+    <section id="pricing" className="bg-white py-10 lg:py-20">
       <Container>
         <SectionHeading
-          invert
           eyebrow={dict.pricing.eyebrow}
           title={dict.pricing.title}
           intro={dict.pricing.intro}
@@ -29,33 +28,48 @@ export function Pricing() {
               <article
                 key={plan.id}
                 className={cn(
-                  "relative flex h-full flex-col bg-navy p-6 text-white",
+                  "relative flex h-full flex-col p-6",
                   featured
-                    ? "border-2 border-[#C9A24B]"
-                    : "border border-white/10"
+                    ? "border-2 border-gold bg-navy text-white"
+                    : "border border-navy/10 bg-cream text-navy"
                 )}
               >
                 {featured ? (
-                  <span className="mb-3 inline-flex self-start bg-[#C9A24B] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-dark">
+                  <span className="mb-3 inline-flex self-start bg-gold px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-dark">
                     {dict.pricing.featured}
                   </span>
                 ) : null}
-                <h3 className="font-serif text-xl font-semibold tracking-tight text-white">
+                <h3
+                  className={cn(
+                    "font-serif text-xl font-semibold tracking-tight",
+                    featured ? "text-white" : "text-navy"
+                  )}
+                >
                   {plan.name}
                 </h3>
-                <p className="mt-3 font-serif text-4xl font-bold text-[#C9A24B]">
+                <p className="mt-3 font-serif text-4xl font-bold text-gold">
                   {plan.price}
-                  <span className="ml-1 font-sans text-sm font-medium uppercase tracking-wide text-white/55">
+                  <span
+                    className={cn(
+                      "ml-1 font-sans text-sm font-medium uppercase tracking-wide",
+                      featured ? "text-white/55" : "text-navy/50"
+                    )}
+                  >
                     {plan.period === "project"
                       ? dict.pricing.perProject
                       : dict.pricing.perMonth}
                   </span>
                 </p>
-                <ul className="mt-5 flex-1 space-y-2 text-[14px] leading-relaxed text-white/75">
+                <ul
+                  className={cn(
+                    "mt-5 flex-1 space-y-2 text-[14px] leading-relaxed",
+                    featured ? "text-white/75" : "text-navy/70"
+                  )}
+                >
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex gap-2">
                       <Check
-                        className="mt-0.5 shrink-0 text-[#C9A24B]"
+                        className="mt-0.5 shrink-0 text-gold"
                         size={16}
                         strokeWidth={2}
                       />
@@ -74,7 +88,7 @@ export function Pricing() {
           })}
         </div>
 
-        <div className="mt-8 border border-navy/10 bg-white">
+        <div className="mt-8 border border-navy/10 bg-cream">
           <button
             type="button"
             className="flex w-full items-center justify-between px-6 py-4 text-left"
@@ -93,15 +107,15 @@ export function Pricing() {
             />
           </button>
           {open ? (
-            <div className="border-t border-navy/10">
+            <div className="border-t border-navy/10 bg-white">
               {dict.pricing.extras.map((extra) => (
                 <div
                   key={extra.name}
                   className="grid gap-1 border-b border-navy/10 px-6 py-3 last:border-b-0 md:grid-cols-[1fr_180px_1.2fr] md:items-baseline md:gap-6"
                 >
                   <p className="font-medium text-navy">{extra.name}</p>
-                  <p className="font-semibold text-[#C9A24B]">{extra.price}</p>
-                  <p className="text-sm text-ink/65">{extra.note}</p>
+                  <p className="font-semibold text-gold">{extra.price}</p>
+                  <p className="text-sm text-navy/65">{extra.note}</p>
                 </div>
               ))}
             </div>

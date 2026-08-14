@@ -38,7 +38,7 @@ export function Services() {
   const { dict } = useLanguage();
 
   return (
-    <section id="services" className="bg-navy py-10 lg:py-20">
+    <section id="services" className="bg-cream py-10 lg:py-20">
       <Container>
         <SectionHeading
           eyebrow={dict.services.eyebrow}
@@ -51,14 +51,14 @@ export function Services() {
             return (
               <article
                 key={item.title}
-                className="h-full border border-[#C9A24B]/20 bg-navy-dark p-6 transition duration-250 hover:border-gold/50"
+                className="h-full border border-navy/10 bg-white p-6 transition duration-250 hover:border-gold"
               >
                 <div className="space-y-2">
                   <Icon className="text-gold" size={24} strokeWidth={1.5} />
-                  <h3 className="font-serif text-lg font-semibold tracking-tight text-white">
+                  <h3 className="font-serif text-lg font-semibold tracking-tight text-navy">
                     {item.title}
                   </h3>
-                  <p className="text-[15px] leading-relaxed text-white/75">
+                  <p className="text-[15px] leading-relaxed text-navy/70">
                     {item.text}
                   </p>
                 </div>

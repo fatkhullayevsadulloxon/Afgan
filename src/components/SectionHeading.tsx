@@ -4,12 +4,12 @@ export function SectionHeading({
   eyebrow,
   title,
   intro,
-  invert = false,
+  dark = false,
 }: {
   eyebrow: string;
   title: string;
   intro?: string;
-  invert?: boolean;
+  dark?: boolean;
 }) {
   return (
     <div className="max-w-3xl">
@@ -19,7 +19,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "mt-2 font-serif text-h2 font-semibold",
-          invert ? "text-ink" : "text-white"
+          dark ? "text-white" : "text-navy"
         )}
       >
         {title}
@@ -28,7 +28,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-4 max-w-xl text-base leading-[1.65] md:text-[17px]",
-            invert ? "text-ink/75" : "text-white/75"
+            dark ? "text-white/75" : "text-navy/70"
           )}
         >
           {intro}

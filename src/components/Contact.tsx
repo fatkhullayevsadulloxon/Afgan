@@ -115,10 +115,10 @@ export function Contact() {
   }
 
   const fieldClass =
-    "w-full border border-line bg-navy px-4 py-3 text-sm text-white placeholder:text-white/35";
+    "w-full border border-navy/15 bg-white px-4 py-3 text-sm text-navy placeholder:text-navy/35";
 
   return (
-    <section id="contact" className="bg-navy py-10 lg:py-20">
+    <section id="contact" className="bg-cream py-10 lg:py-20">
       <Container>
         <SectionHeading
           eyebrow={dict.contact.eyebrow}
@@ -134,7 +134,7 @@ export function Contact() {
                   <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
                     {dict.contact.addressLabel}
                   </dt>
-                  <dd className="mt-2 leading-relaxed text-white/75">
+                  <dd className="mt-2 leading-relaxed text-navy/70">
                     {dict.contact.address}
                   </dd>
                 </div>
@@ -145,7 +145,7 @@ export function Contact() {
                   <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
                     {dict.contact.phoneLabel}
                   </dt>
-                  <dd className="mt-2 space-y-1 text-white/75">
+                  <dd className="mt-2 space-y-1 text-navy/70">
                     {CONTACT_PHONES.map((phone) => (
                       <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="block hover:text-gold">
                         {phone}
@@ -161,14 +161,14 @@ export function Contact() {
                     {dict.contact.emailLabel}
                   </dt>
                   <dd className="mt-2">
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-white/75 hover:text-gold">
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy/70 hover:text-gold">
                       {CONTACT_EMAIL}
                     </a>
                   </dd>
                 </div>
               </div>
             </dl>
-            <div className="mt-8 overflow-hidden border border-white/10">
+            <div className="mt-8 overflow-hidden border border-navy/10">
               <iframe
                 title={dict.contact.mapTitle}
                 src={MAP_EMBED_SRC}
@@ -244,7 +244,7 @@ export function Contact() {
               {status === "sending" ? form.sending : form.submit}
             </Button>
             {status === "success" ? (
-              <p className="text-sm text-gold-light">{form.success}</p>
+              <p className="text-sm text-navy">{form.success}</p>
             ) : null}
             {status === "error" ? (
               <p className="text-sm text-red-300">{form.error}</p>
@@ -267,7 +267,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-light">
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
         {label}
       </span>
       {children}

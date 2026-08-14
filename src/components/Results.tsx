@@ -8,9 +8,10 @@ export function Results() {
   const { dict } = useLanguage();
 
   return (
-    <section className="bg-navy-dark py-10 lg:py-20">
+    <section className="bg-navy py-10 lg:py-20">
       <Container>
         <SectionHeading
+          dark
           eyebrow={dict.results.eyebrow}
           title={dict.results.title}
         />
@@ -18,14 +19,14 @@ export function Results() {
           {dict.results.items.map((item) => (
             <article
               key={item.label}
-              className="h-full border border-[#C9A24B]/20 bg-[#F5F3EE] p-6"
+              className="h-full border border-gold/30 bg-white p-6"
             >
-              <p className="font-serif text-4xl font-bold text-[#C9A24B] md:text-[2.75rem]">
+              <p className="font-serif text-4xl font-bold text-gold md:text-[2.75rem]">
                 {item.prefix}
                 {item.value}
                 {item.suffix}
               </p>
-              <p className="mt-3 text-[15px] leading-relaxed text-[#1A1A1A]">
+              <p className="mt-3 text-[15px] leading-relaxed text-navy">
                 {item.label}
               </p>
             </article>

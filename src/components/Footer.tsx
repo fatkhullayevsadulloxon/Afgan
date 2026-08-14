@@ -19,17 +19,14 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-navy-dark py-10 lg:py-16">
+    <footer className="border-t border-gold/30 bg-navy py-10 lg:py-16">
       <Container>
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <div className="flex items-center gap-3">
-              <Logo size={32} />
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white">
-                {dict.brand.name}
-              </span>
+            <div className="inline-block bg-white px-3 py-2">
+              <Logo className="h-12 w-auto" />
             </div>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-off-white">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/75">
               {dict.footer.description}
             </p>
           </div>
@@ -40,7 +37,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2">
               {LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm text-off-white hover:text-gold">
+                  <a href={link.href} className="text-sm text-white/75 hover:text-gold">
                     {dict.nav[link.key]}
                   </a>
                 </li>
@@ -51,10 +48,10 @@ export function Footer() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
               {dict.footer.office}
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-off-white">
+            <p className="mt-4 text-sm leading-relaxed text-white/75">
               {dict.contact.address}
             </p>
-            <p className="mt-3 space-y-1 text-sm text-off-white">
+            <p className="mt-3 space-y-1 text-sm text-white/75">
               {CONTACT_PHONES.map((phone) => (
                 <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="block hover:text-gold">
                   {phone}
@@ -66,9 +63,9 @@ export function Footer() {
             </p>
           </div>
         </div>
-        <RouteLine variant="footer" className="mt-8 max-w-md" />
+        <RouteLine variant="footer" dark className="mt-8 max-w-md" />
         <p className="mt-6 text-xs text-white/45">
-          © {year} {dict.brand.name}. {dict.footer.rights}
+          © {year} OXUS. {dict.footer.rights}
         </p>
       </Container>
     </footer>

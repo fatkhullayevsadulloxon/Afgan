@@ -12,26 +12,30 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[92vh] flex-col justify-center overflow-hidden"
+      className="relative flex min-h-[92vh] flex-col justify-center overflow-hidden bg-cream"
     >
-      <Image
-        src="/images/hero.jpg"
-        alt={dict.img.heroAlt}
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A1330]/60 via-[#0A1330]/80 to-[#0A1330]/98" />
+      <div className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block">
+        <div className="absolute inset-y-0 left-[38%] right-0">
+          <Image
+            src="/images/hero-oxus.jpg"
+            alt={dict.img.heroAlt}
+            fill
+            priority
+            className="object-cover object-[28%_center] -scale-x-100"
+            sizes="62vw"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-cream from-[42%] via-cream/90 via-[52%] to-transparent" />
+      </div>
 
-      <Container className="relative z-10 pb-16 pt-24 md:pb-20 md:pt-28">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gold-light md:text-xs">
+      <Container className="relative z-10 pb-16 pt-28 md:pb-20 md:pt-32">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gold md:text-xs">
           {dict.hero.eyebrow}
         </p>
-        <h1 className="mt-4 max-w-4xl font-serif text-h1 font-bold text-white">
+        <h1 className="mt-4 max-w-3xl font-serif text-h1 font-bold text-navy">
           {dict.hero.title}
         </h1>
-        <p className="mt-4 max-w-xl text-base leading-[1.65] text-white/75 md:text-lg">
+        <p className="mt-4 max-w-xl text-base leading-[1.65] text-navy/70 md:text-lg">
           {dict.hero.subhead}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -41,14 +45,24 @@ export function Hero() {
           </Button>
         </div>
         <RouteLine className="mt-12 max-w-xl" />
+        <div className="relative mt-10 h-44 w-full overflow-hidden lg:hidden">
+          <Image
+            src="/images/hero-oxus.jpg"
+            alt={dict.img.heroAlt}
+            fill
+            className="object-cover object-center -scale-x-100"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-cream/80 to-transparent" />
+        </div>
       </Container>
 
       <a
         href="#about"
-        className="absolute bottom-6 left-5 z-10 hidden flex-col items-start gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-light md:left-8 md:flex"
+        className="absolute bottom-6 left-5 z-10 hidden flex-col items-start gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold md:left-8 md:flex"
       >
         <span>{dict.hero.scroll}</span>
-        <span className="block h-8 w-px bg-gold/70" />
+        <span className="block h-8 w-px bg-gold" />
       </a>
     </section>
   );
