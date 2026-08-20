@@ -1,18 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Logo } from "@/components/Logo";
 import { RouteLine } from "@/components/RouteLine";
 import { useLanguage } from "@/context/LanguageContext";
 import { CONTACT_EMAIL, CONTACT_PHONES } from "@/lib/site";
-
-const LINKS = [
-  { href: "#about", key: "about" as const },
-  { href: "#services", key: "services" as const },
-  { href: "#pricing", key: "pricing" as const },
-  { href: "#stages", key: "stages" as const },
-  { href: "#contact", key: "contact" as const },
-];
+import { NAV_ITEMS, ROUTES } from "@/lib/routes";
 
 export function Footer() {
   const { dict } = useLanguage();
@@ -35,11 +29,16 @@ export function Footer() {
               {dict.footer.links}
             </p>
             <ul className="mt-4 space-y-2">
-              {LINKS.map((link) => (
+              <li>
+                <Link href={ROUTES.home} className="text-sm text-white/75 hover:text-gold">
+                  {dict.common.home}
+                </Link>
+              </li>
+              {NAV_ITEMS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm text-white/75 hover:text-gold">
+                  <Link href={link.href} className="text-sm text-white/75 hover:text-gold">
                     {dict.nav[link.key]}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -53,7 +52,11 @@ export function Footer() {
             </p>
             <p className="mt-3 space-y-1 text-sm text-white/75">
               {CONTACT_PHONES.map((phone) => (
-                <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="block hover:text-gold">
+                <a
+                  key={phone}
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className="block hover:text-gold"
+                >
                   {phone}
                 </a>
               ))}

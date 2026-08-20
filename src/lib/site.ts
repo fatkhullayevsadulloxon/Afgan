@@ -11,8 +11,6 @@ export const OFFICE_ADDRESS_EN =
 export const MAP_EMBED_SRC =
   "https://maps.google.com/maps?q=Kart-e%20Se%2C%20Kabul%2C%20Afghanistan&t=&z=14&ie=UTF8&iwloc=&output=embed";
 
-export const PACKAGE_EVENT = "ubh:package";
-
 export type PackageId =
   | "basic"
   | "business"
@@ -20,12 +18,19 @@ export type PackageId =
   | "representative"
   | "other";
 
-export function selectPackageAndScroll(packageId: PackageId) {
-  if (typeof window === "undefined") return;
-  window.dispatchEvent(new CustomEvent(PACKAGE_EVENT, { detail: packageId }));
-  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-}
+export const PACKAGE_QUERY_MAP: Record<string, PackageId> = {
+  basic: "basic",
+  bazaviy: "basic",
+  business: "business",
+  biznes: "business",
+  export: "export",
+  eksport: "export",
+  representative: "representative",
+  vakolatxona: "representative",
+  other: "other",
+};
 
-export function scrollToId(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+export function parsePackageQuery(value: string | null | undefined): PackageId | null {
+  if (!value) return null;
+  return PACKAGE_QUERY_MAP[value.toLowerCase()] ?? null;
 }

@@ -1,9 +1,11 @@
 "use client";
 
 import { ShieldCheck, TrendingUp, Landmark } from "lucide-react";
+import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { useLanguage } from "@/context/LanguageContext";
+import { ROUTES } from "@/lib/routes";
 
 const ICONS = [TrendingUp, ShieldCheck, Landmark];
 
@@ -11,7 +13,7 @@ export function About() {
   const { dict } = useLanguage();
 
   return (
-    <section id="about" className="bg-white py-10 lg:py-20">
+    <section className="bg-white py-10 lg:py-20">
       <Container>
         <SectionHeading
           eyebrow={dict.about.eyebrow}
@@ -38,6 +40,11 @@ export function About() {
               </article>
             );
           })}
+        </div>
+        <div className="mt-8">
+          <Button href={ROUTES.about} variant="secondary">
+            {dict.home.aboutMore} →
+          </Button>
         </div>
       </Container>
     </section>

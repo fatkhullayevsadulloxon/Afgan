@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/Button";
@@ -8,17 +10,11 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Logo } from "@/components/Logo";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
-
-const NAV = [
-  { href: "#about", key: "about" as const },
-  { href: "#services", key: "services" as const },
-  { href: "#pricing", key: "pricing" as const },
-  { href: "#stages", key: "stages" as const },
-  { href: "#contact", key: "contact" as const },
-];
+import { NAV_ITEMS, ROUTES } from "@/lib/routes";
 
 export function Header() {
   const { dict } = useLanguage();
+  const pathname = usePathname();
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,35 +32,50 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   const close = () => setOpen(false);
+  const isHome = pathname === ROUTES.home;
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b bg-white/95 backdrop-blur-sm transition-shadow duration-250",
-        solid || open ? "border-navy/10 shadow-sm" : "border-transparent"
+        solid || open || !isHome ? "border-navy/10 shadow-sm" : "border-transparent"
       )}
     >
       <Container className="flex h-[72px] items-center justify-between gap-3 lg:h-20 lg:gap-4">
-        <a href="#top" className="flex shrink-0 items-center" onClick={close}>
-          <Logo priority />
-        </a>
+        {!isHome ? (
+          <Link href={ROUTES.home} className="flex shrink-0 items-center" onClick={close}>
+            <Logo priority />
+          </Link>
+        ) : null}
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-[13px] font-medium text-navy/75 transition hover:text-gold"
-            >
-              {dict.nav[item.key]}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "border-b-2 pb-0.5 text-[13px] font-medium transition",
+                  active
+                    ? "border-gold text-gold"
+                    : "border-transparent text-navy/75 hover:text-gold"
+                )}
+              >
+                {dict.nav[item.key]}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <Button href="#contact" className="hidden md:inline-flex">
+          <Button href={ROUTES.contact} className="hidden md:inline-flex">
             {dict.nav.cta}
           </Button>
           <button
@@ -86,17 +97,23 @@ export function Header() {
         )}
       >
         <Container className="flex flex-col gap-1 py-6">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={close}
-              className="py-3 text-base text-navy"
-            >
-              {dict.nav[item.key]}
-            </a>
-          ))}
-          <Button href="#contact" onClick={close} className="mt-4 w-full">
+          {NAV_ITEMS.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={close}
+                className={cn(
+                  "py-3 text-base",
+                  active ? "text-gold" : "text-navy"
+                )}
+              >
+                {dict.nav[item.key]}
+              </Link>
+            );
+          })}
+          <Button href={ROUTES.contact} onClick={close} className="mt-4 w-full">
             {dict.nav.cta}
           </Button>
         </Container>

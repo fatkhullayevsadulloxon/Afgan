@@ -5,6 +5,7 @@ import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { RouteLine } from "@/components/RouteLine";
 import { useLanguage } from "@/context/LanguageContext";
+import { ROUTES } from "@/lib/routes";
 
 export function Hero() {
   const { dict } = useLanguage();
@@ -29,18 +30,22 @@ export function Hero() {
       </div>
 
       <Container className="relative z-10 pb-16 pt-28 md:pb-20 md:pt-32">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gold md:text-xs">
-          {dict.hero.eyebrow}
-        </p>
-        <h1 className="mt-4 max-w-3xl font-serif text-h1 font-bold text-navy">
-          {dict.hero.title}
+        <h1>
+          <Image
+            src="/images/oxus-wordmark.png"
+            alt={dict.hero.title}
+            width={930}
+            height={343}
+            priority
+            className="h-28 w-auto object-contain object-left md:h-32 lg:h-36"
+          />
         </h1>
-        <p className="mt-4 max-w-xl text-base leading-[1.65] text-navy/70 md:text-lg">
+        <p className="mt-3 font-serif text-lg font-semibold uppercase tracking-[0.18em] text-navy md:text-xl lg:text-2xl">
           {dict.hero.subhead}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Button href="#contact">{dict.hero.ctaPrimary}</Button>
-          <Button href="#services" variant="secondary">
+          <Button href={ROUTES.contact}>{dict.hero.ctaPrimary}</Button>
+          <Button href={ROUTES.services} variant="secondary">
             {dict.hero.ctaSecondary}
           </Button>
         </div>
@@ -58,7 +63,7 @@ export function Hero() {
       </Container>
 
       <a
-        href="#about"
+        href={ROUTES.about}
         className="absolute bottom-6 left-5 z-10 hidden flex-col items-start gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold md:left-8 md:flex"
       >
         <span>{dict.hero.scroll}</span>

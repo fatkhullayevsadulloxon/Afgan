@@ -7,23 +7,33 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
-import { selectPackageAndScroll, type PackageId } from "@/lib/site";
+import { contactWithPackage, ROUTES } from "@/lib/routes";
 
-export function Pricing() {
+export function Pricing({
+  mode = "preview",
+  hideHeading = false,
+}: {
+  mode?: "preview" | "full";
+  hideHeading?: boolean;
+}) {
   const { dict } = useLanguage();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(mode === "full");
 
   return (
-    <section id="pricing" className="bg-white py-10 lg:py-20">
+    <section className="bg-white py-10 lg:py-20">
       <Container>
-        <SectionHeading
-          eyebrow={dict.pricing.eyebrow}
-          title={dict.pricing.title}
-          intro={dict.pricing.intro}
-        />
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {hideHeading ? null : (
+          <SectionHeading
+            eyebrow={dict.pricing.eyebrow}
+            title={dict.pricing.title}
+            intro={dict.pricing.intro}
+          />
+        )}
+        <div className={cn("grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4", !hideHeading && "mt-8")}>
           {dict.pricing.plans.map((plan) => {
             const featured = plan.id === "business";
+            const features =
+              mode === "preview" ? plan.features.slice(0, 2) : plan.features;
             return (
               <article
                 key={plan.id}
@@ -66,7 +76,7 @@ export function Pricing() {
                     featured ? "text-white/75" : "text-navy/70"
                   )}
                 >
-                  {plan.features.map((feature) => (
+                  {features.map((feature) => (
                     <li key={feature} className="flex gap-2">
                       <Check
                         className="mt-0.5 shrink-0 text-gold"
@@ -77,50 +87,80 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <Button
-                  className="mt-6 w-full"
-                  onClick={() => selectPackageAndScroll(plan.id as PackageId)}
-                >
-                  {dict.pricing.cta}
-                </Button>
+                {mode === "full" ? (
+                  <Button
+                    className="mt-6 w-full"
+                    href={contactWithPackage(plan.id)}
+                  >
+                    {dict.pricing.cta}
+                  </Button>
+                ) : null}
               </article>
             );
           })}
         </div>
 
-        <div className="mt-8 border border-navy/10 bg-cream">
-          <button
-            type="button"
-            className="flex w-full items-center justify-between px-6 py-4 text-left"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-          >
-            <span className="font-serif text-lg font-semibold text-navy">
-              {dict.pricing.extrasTitle}
-            </span>
-            <ChevronDown
-              className={cn(
-                "text-gold transition duration-250",
-                open && "rotate-180"
-              )}
-              size={22}
-            />
-          </button>
-          {open ? (
-            <div className="border-t border-navy/10 bg-white">
-              {dict.pricing.extras.map((extra) => (
-                <div
-                  key={extra.name}
-                  className="grid gap-1 border-b border-navy/10 px-6 py-3 last:border-b-0 md:grid-cols-[1fr_180px_1.2fr] md:items-baseline md:gap-6"
-                >
-                  <p className="font-medium text-navy">{extra.name}</p>
-                  <p className="font-semibold text-gold">{extra.price}</p>
-                  <p className="text-sm text-navy/65">{extra.note}</p>
+        {mode === "preview" ? (
+          <div className="mt-8">
+            <Button href={ROUTES.pricing} variant="secondary">
+              {dict.home.pricingMore} →
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className="mt-8 border border-navy/10 bg-cream">
+              <button
+                type="button"
+                className="flex w-full items-center justify-between px-6 py-4 text-left"
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+              >
+                <span className="font-serif text-lg font-semibold text-navy">
+                  {dict.pricing.extrasTitle}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    "text-gold transition duration-250",
+                    open && "rotate-180"
+                  )}
+                  size={22}
+                />
+              </button>
+              {open ? (
+                <div className="border-t border-navy/10 bg-white">
+                  {dict.pricing.extras.map((extra) => (
+                    <div
+                      key={extra.name}
+                      className="grid gap-1 border-b border-navy/10 px-6 py-3 last:border-b-0 md:grid-cols-[1fr_180px_1.2fr] md:items-baseline md:gap-6"
+                    >
+                      <p className="font-medium text-navy">{extra.name}</p>
+                      <p className="font-semibold text-gold">{extra.price}</p>
+                      <p className="text-sm text-navy/65">{extra.note}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : null}
             </div>
-          ) : null}
-        </div>
+
+            {"faq" in dict.pricing && dict.pricing.faq?.length ? (
+              <div className="mt-12">
+                <h3 className="font-serif text-2xl font-semibold text-navy">
+                  {dict.pricing.faqTitle}
+                </h3>
+                <div className="mt-6 space-y-4">
+                  {dict.pricing.faq.map((item) => (
+                    <div key={item.q} className="border border-navy/10 bg-cream p-5">
+                      <p className="font-semibold text-navy">{item.q}</p>
+                      <p className="mt-2 text-[15px] leading-relaxed text-navy/70">
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </>
+        )}
       </Container>
     </section>
   );

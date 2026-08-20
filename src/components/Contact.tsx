@@ -1,7 +1,8 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -11,7 +12,7 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONES,
   MAP_EMBED_SRC,
-  PACKAGE_EVENT,
+  parsePackageQuery,
   type PackageId,
 } from "@/lib/site";
 
@@ -24,11 +25,18 @@ const PACKAGE_IDS: PackageId[] = [
   "other",
 ];
 
-type FieldErrors = Partial<Record<"name" | "company" | "country" | "email" | "service", string>>;
+type FieldErrors = Partial<
+  Record<"name" | "company" | "country" | "email" | "service", string>
+>;
 
-export function Contact() {
+export function ContactForm({
+  showHeading = true,
+}: {
+  showHeading?: boolean;
+}) {
   const { dict } = useLanguage();
   const form = dict.contact.form;
+  const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [country, setCountry] = useState("");
@@ -36,16 +44,14 @@ export function Contact() {
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle"
+  );
 
   useEffect(() => {
-    const handler = (event: Event) => {
-      const id = (event as CustomEvent<string>).detail;
-      if (PACKAGE_IDS.includes(id as PackageId)) setService(id);
-    };
-    window.addEventListener(PACKAGE_EVENT, handler);
-    return () => window.removeEventListener(PACKAGE_EVENT, handler);
-  }, []);
+    const fromQuery = parsePackageQuery(searchParams.get("paket"));
+    if (fromQuery) setService(fromQuery);
+  }, [searchParams]);
 
   function validate(): FieldErrors {
     const next: FieldErrors = {};
@@ -83,7 +89,9 @@ export function Contact() {
       const data = (await res.json()) as { ok?: boolean; fallback?: boolean };
 
       if (data.fallback) {
-        const subject = encodeURIComponent(`${form.service}: ${service} — ${name}`);
+        const subject = encodeURIComponent(
+          `${form.service}: ${service} — ${name}`
+        );
         const body = encodeURIComponent(
           [
             `${form.name}: ${payload.name}`,
@@ -118,14 +126,16 @@ export function Contact() {
     "w-full border border-navy/15 bg-white px-4 py-3 text-sm text-navy placeholder:text-navy/35";
 
   return (
-    <section id="contact" className="bg-cream py-10 lg:py-20">
+    <section className="bg-cream py-10 lg:py-20">
       <Container>
-        <SectionHeading
-          eyebrow={dict.contact.eyebrow}
-          title={dict.contact.title}
-          intro={dict.contact.intro}
-        />
-        <div className="mt-8 grid gap-8 lg:grid-cols-2">
+        {showHeading ? (
+          <SectionHeading
+            eyebrow={dict.contact.eyebrow}
+            title={dict.contact.title}
+            intro={dict.contact.intro}
+          />
+        ) : null}
+        <div className={cn("grid gap-8 lg:grid-cols-2", showHeading && "mt-8")}>
           <div>
             <dl className="space-y-6">
               <div className="flex gap-4">
@@ -147,7 +157,11 @@ export function Contact() {
                   </dt>
                   <dd className="mt-2 space-y-1 text-navy/70">
                     {CONTACT_PHONES.map((phone) => (
-                      <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="block hover:text-gold">
+                      <a
+                        key={phone}
+                        href={`tel:${phone.replace(/\s/g, "")}`}
+                        className="block hover:text-gold"
+                      >
                         {phone}
                       </a>
                     ))}
@@ -161,12 +175,26 @@ export function Contact() {
                     {dict.contact.emailLabel}
                   </dt>
                   <dd className="mt-2">
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy/70 hover:text-gold">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="text-navy/70 hover:text-gold"
+                    >
                       {CONTACT_EMAIL}
                     </a>
                   </dd>
                 </div>
               </div>
+              {"hours" in dict.contact && dict.contact.hours ? (
+                <div className="flex gap-4">
+                  <Clock className="mt-0.5 shrink-0 text-gold" size={20} strokeWidth={1.5} />
+                  <div>
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                      {dict.contact.hoursLabel}
+                    </dt>
+                    <dd className="mt-2 text-navy/70">{dict.contact.hours}</dd>
+                  </div>
+                </div>
+              ) : null}
             </dl>
             <div className="mt-8 overflow-hidden border border-navy/10">
               <iframe
@@ -240,14 +268,18 @@ export function Contact() {
                 onChange={(e) => setMessage(e.target.value)}
               />
             </Field>
-            <Button type="submit" disabled={status === "sending"} className="w-full sm:w-auto">
+            <Button
+              type="submit"
+              disabled={status === "sending"}
+              className="w-full sm:w-auto"
+            >
               {status === "sending" ? form.sending : form.submit}
             </Button>
             {status === "success" ? (
               <p className="text-sm text-navy">{form.success}</p>
             ) : null}
             {status === "error" ? (
-              <p className="text-sm text-red-300">{form.error}</p>
+              <p className="text-sm text-red-600">{form.error}</p>
             ) : null}
           </form>
         </div>
@@ -271,7 +303,9 @@ function Field({
         {label}
       </span>
       {children}
-      {error ? <span className="mt-1.5 block text-xs text-red-300">{error}</span> : null}
+      {error ? (
+        <span className="mt-1.5 block text-xs text-red-600">{error}</span>
+      ) : null}
     </label>
   );
 }

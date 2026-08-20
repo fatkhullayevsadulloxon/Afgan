@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 type ButtonProps = {
@@ -30,10 +31,18 @@ export function Button({
   );
 
   if (href) {
+    const external = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+    if (external) {
+      return (
+        <a href={href} onClick={onClick} className={classes}>
+          {children}
+        </a>
+      );
+    }
     return (
-      <a href={href} onClick={onClick} className={classes}>
+      <Link href={href} onClick={onClick} className={classes}>
         {children}
-      </a>
+      </Link>
     );
   }
 
