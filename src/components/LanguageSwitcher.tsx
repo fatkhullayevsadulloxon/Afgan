@@ -11,7 +11,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     <div
       className={cn("flex items-center border border-navy/20", className)}
       role="group"
-      aria-label="Language"
+      aria-label="Language / زبان"
     >
       {locales.map((code) => (
         <button

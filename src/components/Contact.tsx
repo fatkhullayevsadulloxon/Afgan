@@ -13,8 +13,10 @@ import {
   CONTACT_PHONES,
   MAP_EMBED_SRC,
   parsePackageQuery,
+  parseServiceQuery,
   type PackageId,
 } from "@/lib/site";
+import { L, isServiceSlug, services, type Lang } from "@/data/services";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PACKAGE_IDS: PackageId[] = [
@@ -34,8 +36,9 @@ export function ContactForm({
 }: {
   showHeading?: boolean;
 }) {
-  const { dict } = useLanguage();
+  const { dict, locale } = useLanguage();
   const form = dict.contact.form;
+  const lang = locale as Lang;
   const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -49,6 +52,11 @@ export function ContactForm({
   );
 
   useEffect(() => {
+    const xizmat = parseServiceQuery(searchParams.get("xizmat"));
+    if (xizmat && isServiceSlug(xizmat)) {
+      setService(xizmat);
+      return;
+    }
     const fromQuery = parsePackageQuery(searchParams.get("paket"));
     if (fromQuery) setService(fromQuery);
   }, [searchParams]);
@@ -254,11 +262,20 @@ export function ContactForm({
                 onChange={(e) => setService(e.target.value)}
               >
                 <option value="">{form.selectPlaceholder}</option>
-                {PACKAGE_IDS.map((id) => (
-                  <option key={id} value={id}>
-                    {form.services[id]}
-                  </option>
-                ))}
+                <optgroup label={dict.services.title}>
+                  {services.map((s) => (
+                    <option key={s.slug} value={s.slug}>
+                      {L(s.title, lang)}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label={dict.pricing.title}>
+                  {PACKAGE_IDS.map((id) => (
+                    <option key={id} value={id}>
+                      {form.services[id]}
+                    </option>
+                  ))}
+                </optgroup>
               </select>
             </Field>
             <Field label={form.message}>

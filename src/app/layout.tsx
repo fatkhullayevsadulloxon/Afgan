@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Inter, Noto_Serif, Playfair_Display } from "next/font/google";
+import { Inter, Noto_Naskh_Arabic, Noto_Serif, Playfair_Display } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { htmlLang, isLocale } from "@/lib/i18n";
+import { htmlLang, localeDir, normalizeLocale } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/site";
 import uz from "../../locales/uz.json";
 import "./globals.css";
@@ -27,6 +27,13 @@ const notoSerif = Noto_Serif({
   display: "swap",
 });
 
+const notoNaskh = Noto_Naskh_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-naskh",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: uz.meta.title,
@@ -35,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "uz_UZ",
-    alternateLocale: ["ru_RU", "en_US"],
+    alternateLocale: ["ru_RU", "fa_AF"],
     url: SITE_URL,
     siteName: uz.brand.name,
     title: uz.meta.ogTitle,
@@ -51,7 +58,7 @@ export const metadata: Metadata = {
     languages: {
       uz: SITE_URL,
       ru: SITE_URL,
-      en: SITE_URL,
+      "fa-AF": SITE_URL,
     },
   },
 };
@@ -62,12 +69,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const raw = cookies().get("ubh-locale")?.value;
-  const initialLocale = isLocale(raw) ? raw : "uz";
+  const initialLocale = normalizeLocale(raw) ?? "uz";
 
   return (
     <html
       lang={htmlLang[initialLocale]}
-      className={`${playfair.variable} ${inter.variable} ${notoSerif.variable}`}
+      dir={localeDir[initialLocale]}
+      className={`${playfair.variable} ${inter.variable} ${notoSerif.variable} ${notoNaskh.variable}`}
     >
       <body className="font-sans antialiased">
         <LanguageProvider initialLocale={initialLocale}>{children}</LanguageProvider>

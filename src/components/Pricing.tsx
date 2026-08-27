@@ -57,19 +57,6 @@ export function Pricing({
                 >
                   {plan.name}
                 </h3>
-                <p className="mt-3 font-serif text-4xl font-bold text-gold">
-                  {plan.price}
-                  <span
-                    className={cn(
-                      "ml-1 font-sans text-sm font-medium uppercase tracking-wide",
-                      featured ? "text-white/55" : "text-navy/50"
-                    )}
-                  >
-                    {plan.period === "project"
-                      ? dict.pricing.perProject
-                      : dict.pricing.perMonth}
-                  </span>
-                </p>
                 <ul
                   className={cn(
                     "mt-5 flex-1 space-y-2 text-[14px] leading-relaxed",
@@ -131,10 +118,9 @@ export function Pricing({
                   {dict.pricing.extras.map((extra) => (
                     <div
                       key={extra.name}
-                      className="grid gap-1 border-b border-navy/10 px-6 py-3 last:border-b-0 md:grid-cols-[1fr_180px_1.2fr] md:items-baseline md:gap-6"
+                      className="grid gap-1 border-b border-navy/10 px-6 py-3 last:border-b-0 md:grid-cols-[1fr_1.2fr] md:items-baseline md:gap-6"
                     >
                       <p className="font-medium text-navy">{extra.name}</p>
-                      <p className="font-semibold text-gold">{extra.price}</p>
                       <p className="text-sm text-navy/65">{extra.note}</p>
                     </div>
                   ))}

@@ -24,8 +24,19 @@ const config: Config = {
         ink: "#1A1A1A",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "var(--font-noto-serif)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: [
+          "var(--font-playfair)",
+          "var(--font-noto-serif)",
+          "var(--font-noto-naskh)",
+          "Georgia",
+          "serif",
+        ],
+        sans: [
+          "var(--font-inter)",
+          "var(--font-noto-naskh)",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       fontSize: {
         h1: ["clamp(2.25rem, 4vw + 1rem, 4rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
@@ -39,6 +50,15 @@ const config: Config = {
       },
       transitionDuration: {
         250: "250ms",
+      },
+      keyframes: {
+        "partners-marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        "partners-marquee": "partners-marquee 45s linear infinite",
       },
     },
   },

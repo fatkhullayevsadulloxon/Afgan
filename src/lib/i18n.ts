@@ -1,8 +1,8 @@
 import uz from "../../locales/uz.json";
 import ru from "../../locales/ru.json";
-import en from "../../locales/en.json";
+import prs from "../../locales/prs.json";
 
-export const locales = ["uz", "ru", "en"] as const;
+export const locales = ["uz", "ru", "prs"] as const;
 export type Locale = (typeof locales)[number];
 
 export type Dictionary = typeof uz;
@@ -10,33 +10,50 @@ export type Dictionary = typeof uz;
 export const dictionaries: Record<Locale, Dictionary> = {
   uz,
   ru,
-  en,
+  prs: prs as Dictionary,
 };
 
 export const localeLabels: Record<Locale, string> = {
   uz: "UZ",
   ru: "RU",
-  en: "EN",
+  prs: "DR",
 };
 
 export const htmlLang: Record<Locale, string> = {
   uz: "uz",
   ru: "ru",
-  en: "en",
+  prs: "fa-AF",
+};
+
+export const localeDir: Record<Locale, "ltr" | "rtl"> = {
+  uz: "ltr",
+  ru: "ltr",
+  prs: "rtl",
 };
 
 const STORAGE_KEY = "ubh-locale";
 const COOKIE_KEY = "ubh-locale";
 
 export function isLocale(value: string | undefined | null): value is Locale {
-  return value === "uz" || value === "ru" || value === "en";
+  if (value === "en") return false; // legacy; migrate via normalizeLocale
+  return value === "uz" || value === "ru" || value === "prs";
+}
+
+/** Map legacy `en` cookie/storage to Dari (`prs`). */
+export function normalizeLocale(value: string | undefined | null): Locale | null {
+  if (value === "en") return "prs";
+  return isLocale(value) ? value : null;
 }
 
 export function readStoredLocale(): Locale | null {
   if (typeof window === "undefined") return null;
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    return isLocale(stored) ? stored : null;
+    const locale = normalizeLocale(stored);
+    if (stored === "en" && locale) {
+      window.localStorage.setItem(STORAGE_KEY, locale);
+    }
+    return locale;
   } catch {
     return null;
   }

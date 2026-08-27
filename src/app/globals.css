@@ -50,9 +50,9 @@ body {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  *:not(.partners-marquee-track),
+  *:not(.partners-marquee-track)::before,
+  *:not(.partners-marquee-track)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

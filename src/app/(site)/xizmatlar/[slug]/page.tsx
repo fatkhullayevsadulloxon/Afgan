@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { ServiceDetailClient } from "../ServicesClient";
 import {
   SERVICE_SLUGS,
+  getServiceBySlug,
   isServiceSlug,
-  type ServiceSlug,
 } from "@/data/services";
 import uz from "../../../../../locales/uz.json";
 
@@ -15,12 +15,11 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  if (!isServiceSlug(params.slug)) return {};
-  const index = SERVICE_SLUGS.indexOf(params.slug as ServiceSlug);
-  const item = uz.services.items[index];
+  const service = getServiceBySlug(params.slug);
+  if (!service) return {};
   return {
-    title: `${item.title} | ${uz.brand.name}`,
-    description: item.detail,
+    title: `${service.title.uz} — ${uz.brand.name}`,
+    description: service.intro.uz,
   };
 }
 

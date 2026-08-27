@@ -11,6 +11,7 @@ import {
 } from "react";
 import {
   htmlLang,
+  localeDir,
   persistLocale,
   readStoredLocale,
   withUzbekFallback,
@@ -45,6 +46,7 @@ export function LanguageProvider({
 
   useEffect(() => {
     document.documentElement.lang = htmlLang[locale];
+    document.documentElement.dir = localeDir[locale];
     document.title = withUzbekFallback(locale).meta.title;
   }, [locale]);
 
