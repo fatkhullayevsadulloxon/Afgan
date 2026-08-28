@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "uz_UZ",
-    alternateLocale: ["ru_RU", "fa_AF"],
+    alternateLocale: ["ru_RU", "en_US", "fa_AF"],
     url: SITE_URL,
     siteName: uz.brand.name,
     title: uz.meta.ogTitle,
@@ -58,6 +58,7 @@ export const metadata: Metadata = {
     languages: {
       uz: SITE_URL,
       ru: SITE_URL,
+      en: SITE_URL,
       "fa-AF": SITE_URL,
     },
   },

@@ -5,11 +5,11 @@ import { Container } from "@/components/Container";
 import { Logo } from "@/components/Logo";
 import { RouteLine } from "@/components/RouteLine";
 import { useLanguage } from "@/context/LanguageContext";
-import { CONTACT_EMAIL, CONTACT_PHONES } from "@/lib/site";
+import { CONTACT_EMAIL, contactPhonesForLocale } from "@/lib/site";
 import { NAV_ITEMS, ROUTES } from "@/lib/routes";
 
 export function Footer() {
-  const { dict } = useLanguage();
+  const { dict, locale } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -51,7 +51,7 @@ export function Footer() {
               {dict.contact.address}
             </p>
             <p className="mt-3 space-y-1 text-sm text-white/75">
-              {CONTACT_PHONES.map((phone) => (
+              {contactPhonesForLocale(locale).map((phone) => (
                 <a
                   key={phone}
                   href={`tel:${phone.replace(/\s/g, "")}`}

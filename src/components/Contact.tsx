@@ -10,8 +10,8 @@ import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import {
   CONTACT_EMAIL,
-  CONTACT_PHONES,
-  MAP_EMBED_SRC,
+  contactPhonesForLocale,
+  mapEmbedForLocale,
   parsePackageQuery,
   parseServiceQuery,
   type PackageId,
@@ -164,7 +164,7 @@ export function ContactForm({
                     {dict.contact.phoneLabel}
                   </dt>
                   <dd className="mt-2 space-y-1 text-navy/70">
-                    {CONTACT_PHONES.map((phone) => (
+                    {contactPhonesForLocale(locale).map((phone) => (
                       <a
                         key={phone}
                         href={`tel:${phone.replace(/\s/g, "")}`}
@@ -207,7 +207,7 @@ export function ContactForm({
             <div className="mt-8 overflow-hidden border border-navy/10">
               <iframe
                 title={dict.contact.mapTitle}
-                src={MAP_EMBED_SRC}
+                src={mapEmbedForLocale(locale)}
                 className="h-48 w-full grayscale contrast-125 md:h-64"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

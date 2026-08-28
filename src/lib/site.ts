@@ -3,13 +3,31 @@ export const SITE_URL =
 
 export const CONTACT_EMAIL = "info@uzbusinesshouse.uz";
 
-export const CONTACT_PHONES = ["+93 78 752 1423"] as const;
+/** Kabul office (Dari / prs) */
+export const CONTACT_PHONES_AF = ["+93 78 752 1423"] as const;
 
-export const OFFICE_ADDRESS_EN =
+/** Tashkent office (UZ / RU) */
+export const CONTACT_PHONES_UZ = ["+998 91 011 11 33"] as const;
+
+export const OFFICE_ADDRESS_AF_EN =
   "13 Street Wazir Akbar Khan Road, First Street Home Number 07, Kabul, Afghanistan";
 
-export const MAP_EMBED_SRC =
+export const OFFICE_ADDRESS_UZ_EN =
+  "8A Afrosiab Street, Mirabad District, Tashkent, Uzbekistan — DMAAR Business Center";
+
+export const MAP_EMBED_AF =
   "https://maps.google.com/maps?q=Wazir%20Akbar%20Khan%2C%20Kabul%2C%20Afghanistan&t=&z=15&ie=UTF8&iwloc=&output=embed";
+
+export const MAP_EMBED_UZ =
+  "https://maps.google.com/maps?q=Afrosiab%208A%20Tashkent%20DMAAR&t=&z=16&ie=UTF8&iwloc=&output=embed";
+
+export function contactPhonesForLocale(locale: string): readonly string[] {
+  return locale === "prs" ? CONTACT_PHONES_AF : CONTACT_PHONES_UZ;
+}
+
+export function mapEmbedForLocale(locale: string): string {
+  return locale === "prs" ? MAP_EMBED_AF : MAP_EMBED_UZ;
+}
 
 export type PackageId =
   | "basic"
