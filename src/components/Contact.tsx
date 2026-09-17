@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,8 +10,10 @@ import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import {
   CONTACT_EMAIL,
-  contactPhonesForLocale,
-  mapEmbedForLocale,
+  CONTACT_PHONES_AF,
+  CONTACT_PHONES_UZ,
+  MAP_EMBED_AF,
+  MAP_EMBED_UZ,
   parsePackageQuery,
   parseServiceQuery,
   type PackageId,
@@ -148,32 +150,45 @@ export function ContactForm({
             <dl className="space-y-6">
               <div className="flex gap-4">
                 <MapPin className="mt-0.5 shrink-0 text-gold" size={20} strokeWidth={1.5} />
-                <div>
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
-                    {dict.contact.addressLabel}
-                  </dt>
-                  <dd className="mt-2 leading-relaxed text-navy/70">
-                    {dict.contact.address}
-                  </dd>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <Phone className="mt-0.5 shrink-0 text-gold" size={20} strokeWidth={1.5} />
-                <div>
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
-                    {dict.contact.phoneLabel}
-                  </dt>
-                  <dd className="mt-2 space-y-1 text-navy/70">
-                    {contactPhonesForLocale(locale).map((phone) => (
-                      <a
-                        key={phone}
-                        href={`tel:${phone.replace(/\s/g, "")}`}
-                        className="block hover:text-gold"
-                      >
-                        {phone}
-                      </a>
-                    ))}
-                  </dd>
+                <div className="space-y-4">
+                  <div>
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                      {dict.hero.tashkent}
+                    </dt>
+                    <dd className="mt-2 leading-relaxed text-navy/70">
+                      {dict.contact.addressUz}
+                    </dd>
+                    <dd className="mt-2 space-y-1 text-navy/70">
+                      {CONTACT_PHONES_UZ.map((phone) => (
+                        <a
+                          key={phone}
+                          href={`tel:${phone.replace(/\s/g, "")}`}
+                          className="block hover:text-gold"
+                        >
+                          {phone}
+                        </a>
+                      ))}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                      {dict.hero.kabul}
+                    </dt>
+                    <dd className="mt-2 leading-relaxed text-navy/70">
+                      {dict.contact.addressAf}
+                    </dd>
+                    <dd className="mt-2 space-y-1 text-navy/70">
+                      {CONTACT_PHONES_AF.map((phone) => (
+                        <a
+                          key={phone}
+                          href={`tel:${phone.replace(/\s/g, "")}`}
+                          className="block hover:text-gold"
+                        >
+                          {phone}
+                        </a>
+                      ))}
+                    </dd>
+                  </div>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -204,14 +219,31 @@ export function ContactForm({
                 </div>
               ) : null}
             </dl>
-            <div className="mt-8 overflow-hidden border border-navy/10">
-              <iframe
-                title={dict.contact.mapTitle}
-                src={mapEmbedForLocale(locale)}
-                className="h-48 w-full grayscale contrast-125 md:h-64"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="mt-8 space-y-4">
+              <div className="overflow-hidden border border-navy/10">
+                <p className="border-b border-navy/10 bg-white px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                  {dict.hero.tashkent}
+                </p>
+                <iframe
+                  title={`${dict.contact.mapTitle} — ${dict.hero.tashkent}`}
+                  src={MAP_EMBED_UZ}
+                  className="h-48 w-full grayscale contrast-125 md:h-56"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <div className="overflow-hidden border border-navy/10">
+                <p className="border-b border-navy/10 bg-white px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                  {dict.hero.kabul}
+                </p>
+                <iframe
+                  title={`${dict.contact.mapTitle} — ${dict.hero.kabul}`}
+                  src={MAP_EMBED_AF}
+                  className="h-48 w-full grayscale contrast-125 md:h-56"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
           </div>
 

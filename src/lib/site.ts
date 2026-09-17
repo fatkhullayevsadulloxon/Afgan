@@ -21,13 +21,24 @@ export const MAP_EMBED_AF =
 export const MAP_EMBED_UZ =
   "https://maps.google.com/maps?q=Afrosiab%208A%20Tashkent%20DMAAR&t=&z=16&ie=UTF8&iwloc=&output=embed";
 
-export function contactPhonesForLocale(locale: string): readonly string[] {
-  return locale === "prs" ? CONTACT_PHONES_AF : CONTACT_PHONES_UZ;
+/** Both offices — shown in every language. */
+export function contactPhonesAll(): readonly string[] {
+  return [...CONTACT_PHONES_UZ, ...CONTACT_PHONES_AF];
+}
+
+/** @deprecated use contactPhonesAll — both numbers in all locales */
+export function contactPhonesForLocale(_locale?: string): readonly string[] {
+  return contactPhonesAll();
 }
 
 export function mapEmbedForLocale(locale: string): string {
   return locale === "prs" ? MAP_EMBED_AF : MAP_EMBED_UZ;
 }
+
+export const MAP_EMBEDS = [
+  { id: "uz", src: MAP_EMBED_UZ },
+  { id: "af", src: MAP_EMBED_AF },
+] as const;
 
 export type PackageId =
   | "basic"
