@@ -26,19 +26,13 @@ export function contactPhonesAll(): readonly string[] {
   return [...CONTACT_PHONES_UZ, ...CONTACT_PHONES_AF];
 }
 
-/** @deprecated use contactPhonesAll — both numbers in all locales */
-export function contactPhonesForLocale(_locale?: string): readonly string[] {
+export function contactPhonesForLocale(): readonly string[] {
   return contactPhonesAll();
 }
 
 export function mapEmbedForLocale(locale: string): string {
   return locale === "prs" ? MAP_EMBED_AF : MAP_EMBED_UZ;
 }
-
-export const MAP_EMBEDS = [
-  { id: "uz", src: MAP_EMBED_UZ },
-  { id: "af", src: MAP_EMBED_AF },
-] as const;
 
 export type PackageId =
   | "basic"
