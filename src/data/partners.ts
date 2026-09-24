@@ -42,7 +42,7 @@ export const partners: Partner[] = [
   {
     id: "kunduz-spinzar",
     name: "Kunduz Spinzar",
-    logo: "/images/partners/real/kunduz-spinzar.svg",
+    logo: "/images/partners/real/kunduz-spinzar.png",
     country: "Afghanistan",
   },
   {
