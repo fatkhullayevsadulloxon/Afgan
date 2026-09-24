@@ -54,7 +54,7 @@ export const partners: Partner[] = [
   {
     id: "huangtai",
     name: "Jinan Huangtai Coal Gasifier Co., Ltd.",
-    logo: "/images/partners/real/huangtai.svg",
+    logo: "/images/partners/real/huangtai.png",
     href: "https://www.huangtaigroup.com/",
     country: "China",
   },
