@@ -77,6 +77,7 @@ export const partnersUz = partners;
 /** @deprecated use `partners` — same list for every language */
 export const partnersAf = partners;
 
-export function partnersForLocale(): Partner[] {
+export function partnersForLocale(_locale?: string): Partner[] {
+  void _locale;
   return partners;
 }
