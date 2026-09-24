@@ -35,8 +35,8 @@ export const partners: Partner[] = [
   },
   {
     id: "energiya",
-    name: "Energiya",
-    logo: "/images/partners/real/energiya.svg",
+    name: "Energiya Uzbekistan",
+    logo: "/images/partners/real/energiya.png",
     country: "Uzbekistan",
   },
   {
