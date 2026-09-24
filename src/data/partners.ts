@@ -28,7 +28,7 @@ export const partners: Partner[] = [
   },
   {
     id: "ssd",
-    name: "SSD",
+    name: "Smart Soft Development (SSD)",
     logo: "/images/partners/real/ssd.svg",
     href: "https://ssd.uz/",
     country: "Uzbekistan",
